@@ -1,0 +1,6 @@
+
+
+
+JavaFX Maven Plugin
+
+http://zenjava.com/javafx/maven/
