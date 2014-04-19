@@ -6,6 +6,10 @@
 
 package org.yagamipaul.timetracker;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yagamipaul.timetracker.listeners.TimeTrackerTreeSelectionListener;
@@ -261,8 +265,14 @@ public class MainApplication extends javax.swing.JFrame {
      */    
     private void customInit() {
         
+        
+        mainApplicationTree.setEditable(true);
         mainApplicationTree.addMouseListener(new TreeMouseAdapter());
         mainApplicationTree.addTreeSelectionListener(new TimeTrackerTreeSelectionListener());
+        
+        TreeNode rootNode = new DefaultMutableTreeNode("Project");        
+        TreeModel model = new DefaultTreeModel(rootNode);        
+        mainApplicationTree.setModel(model);
         
         
         

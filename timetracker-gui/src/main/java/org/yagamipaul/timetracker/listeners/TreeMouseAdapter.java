@@ -8,6 +8,8 @@ package org.yagamipaul.timetracker.listeners;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
 import org.yagamipaul.timetracker.components.RightClickPopupMenu;
 
 /**
@@ -36,7 +38,14 @@ public class TreeMouseAdapter extends MouseAdapter {
 
     private void showPopup(MouseEvent e) {
 
+        JTree tree = (JTree) e.getSource();
+        TreeSelectionModel selection = tree.getSelectionModel();
+        DefaultMutableTreeNode selectedNode= ((DefaultMutableTreeNode) selection.getSelectionPath().getLastPathComponent());
+        
+        
         RightClickPopupMenu popUp = new RightClickPopupMenu();
+        popUp.setTree(tree);
+        popUp.setSelectedNode(selectedNode);
         popUp.init();
         popUp.show((JTree) e.getSource(), e.getX(), e.getY());
 
